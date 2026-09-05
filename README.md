@@ -2,7 +2,7 @@
 
 Personal portfolio site for Punganoor Naresh Kumar, an Artificial Intelligence & Data Science engineering student and aspiring Data Analyst.
 
-🔗 **Live site:** file:///C:/Users/P.Naresh%20Kumar/Downloads/Naresh_Kumar_Portfolio.html#skills
+🔗 **Live site:**https://nareshkumarpunganoor-crypto.github.io/portfolio/
 ## About
 
 This site showcases my work in data analytics and business intelligence, including:
