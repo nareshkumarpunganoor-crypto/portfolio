@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Punganoor Naresh Kumar — Data Analyst Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#F6F7F4;
+    --surface:#FFFFFF;
+    --ink:#16233A;
+    --ink-soft:#4B5768;
+    --ink-faint:#7C8797;
+    --teal:#2C6E68;
+    --teal-deep:#1E4E4A;
+    --amber:#D98B3F;
+    --line:#DDE1DA;
+    --radius:3px;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    *{animation-duration:0.01ms !important; animation-iteration-count:1 !important; transition-duration:0.01ms !important;}
+  }
+
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:'IBM Plex Sans', sans-serif;
+    font-size:16px;
+    line-height:1.6;
+  }
+
+  a{color:var(--teal-deep);}
+  a:focus-visible, button:focus-visible{
+    outline:2px solid var(--teal);
+    outline-offset:3px;
+  }
+
+  h1,h2,h3{
+    font-family:'Fraunces', serif;
+    color:var(--ink);
+    margin:0;
+    font-weight:600;
+  }
+
+  .layout{
+    display:flex;
+    max-width:1180px;
+    margin:0 auto;
+    min-height:100vh;
+  }
+
+  /* ---------- Sidebar ---------- */
+  .sidebar{
+    width:280px;
+    flex-shrink:0;
+    padding:52px 32px;
+    position:sticky;
+    top:0;
+    height:100vh;
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+    border-right:1px solid var(--line);
+  }
+
+  .sidebar-top .name{
+    font-size:1.5rem;
+    line-height:1.25;
+  }
+  .sidebar-top .role{
+    margin-top:10px;
+    color:var(--ink-soft);
+    font-size:0.92rem;
+    max-width:20ch;
+  }
+
+  .sidebar-nav{
+    margin-top:48px;
+    display:flex;
+    flex-direction:column;
+    gap:14px;
+  }
+  .sidebar-nav a{
+    color:var(--ink-soft);
+    text-decoration:none;
+    font-size:0.95rem;
+    border-left:2px solid transparent;
+    padding-left:12px;
+    transition:color .15s ease, border-color .15s ease;
+  }
+  .sidebar-nav a:hover, .sidebar-nav a:focus-visible{
+    color:var(--ink);
+    border-left-color:var(--teal);
+  }
+
+  .sidebar-contact{
+    font-size:0.85rem;
+    color:var(--ink-soft);
+    display:flex;
+    flex-direction:column;
+    gap:6px;
+    border-top:1px solid var(--line);
+    padding-top:20px;
+  }
+  .sidebar-contact a{color:var(--ink-soft); text-decoration:none;}
+  .sidebar-contact a:hover{color:var(--teal-deep);}
+
+  /* ---------- Mobile top bar ---------- */
+  .mobile-bar{
+    display:none;
+  }
+
+  /* ---------- Main ---------- */
+  main{
+    flex:1;
+    padding:52px 48px 80px;
+    min-width:0;
+  }
+
+  section{
+    padding-bottom:56px;
+    margin-bottom:56px;
+    border-bottom:1px solid var(--line);
+  }
+  section:last-of-type{border-bottom:none;}
+
+  .section-label{
+    font-size:0.8rem;
+    color:var(--teal-deep);
+    font-weight:600;
+    margin-bottom:14px;
+  }
+
+  /* ---------- Hero ---------- */
+  .hero h1{
+    font-size:2.5rem;
+    max-width:14ch;
+    letter-spacing:-0.01em;
+  }
+  .hero .lede{
+    margin-top:18px;
+    max-width:56ch;
+    color:var(--ink-soft);
+    font-size:1.05rem;
+  }
+
+  .hero-chart{
+    margin-top:40px;
+    display:flex;
+    align-items:flex-end;
+    gap:0;
+  }
+  .hero-chart svg{
+    width:100%;
+    max-width:560px;
+    height:auto;
+  }
+
+  .bar{
+    transform-origin:bottom;
+    transform:scaleY(0);
+    animation:grow 0.9s cubic-bezier(.2,.8,.3,1) forwards;
+  }
+  @keyframes grow{ to{ transform:scaleY(1); } }
+
+  .hero-caption{
+    margin-top:10px;
+    font-size:0.82rem;
+    color:var(--ink-faint);
+    max-width:560px;
+  }
+
+  /* ---------- About ---------- */
+  .about-grid{
+    display:grid;
+    grid-template-columns:2fr 1fr;
+    gap:40px;
+  }
+  .about-grid p{
+    color:var(--ink-soft);
+    max-width:62ch;
+  }
+  .about-figures{
+    display:flex;
+    flex-direction:column;
+    gap:22px;
+  }
+  .figure .num{
+    font-family:'Fraunces', serif;
+    font-size:2rem;
+    color:var(--ink);
+    line-height:1;
+  }
+  .figure .cap{
+    color:var(--ink-soft);
+    font-size:0.85rem;
+    margin-top:4px;
+  }
+
+  /* ---------- Skills ---------- */
+  .skill-groups{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:32px;
+  }
+  .skill-group h3{
+    font-size:1rem;
+    font-family:'IBM Plex Sans', sans-serif;
+    font-weight:600;
+    color:var(--ink);
+    margin-bottom:12px;
+  }
+  .skill-group ul{
+    list-style:none;
+    margin:0; padding:0;
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+  }
+  .skill-group li{
+    color:var(--ink-soft);
+    font-size:0.92rem;
+    position:relative;
+    padding-left:14px;
+  }
+  .skill-group li::before{
+    content:"";
+    position:absolute;
+    left:0; top:0.55em;
+    width:5px; height:5px;
+    background:var(--teal);
+    border-radius:50%;
+  }
+
+  /* ---------- Experience timeline ---------- */
+  .timeline{
+    display:flex;
+    flex-direction:column;
+  }
+  .tl-item{
+    display:grid;
+    grid-template-columns:44px 1fr;
+    gap:20px;
+    padding:22px 0;
+    border-top:1px solid var(--line);
+  }
+  .tl-item:first-child{border-top:none;}
+  .tl-index{
+    font-family:'Fraunces', serif;
+    color:var(--ink-faint);
+    font-size:1.1rem;
+    padding-top:2px;
+  }
+  .tl-role{
+    font-size:1.05rem;
+    font-weight:600;
+    color:var(--ink);
+  }
+  .tl-org{
+    color:var(--teal-deep);
+    font-size:0.92rem;
+    margin-top:2px;
+  }
+  .tl-dates{
+    color:var(--ink-faint);
+    font-size:0.82rem;
+    margin-top:2px;
+  }
+  .tl-desc{
+    margin-top:10px;
+    color:var(--ink-soft);
+    font-size:0.94rem;
+    max-width:60ch;
+  }
+
+  /* ---------- Projects ---------- */
+  .projects{
+    display:flex;
+    flex-direction:column;
+    gap:28px;
+  }
+  .project-card{
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:28px;
+    background:var(--surface);
+    display:grid;
+    grid-template-columns:1fr 200px;
+    gap:28px;
+    align-items:center;
+  }
+  .project-card h3{
+    font-size:1.2rem;
+  }
+  .project-card p{
+    margin-top:10px;
+    color:var(--ink-soft);
+    font-size:0.94rem;
+    max-width:52ch;
+  }
+  .project-tags{
+    margin-top:14px;
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+  }
+  .project-tags span{
+    font-size:0.76rem;
+    color:var(--teal-deep);
+    border:1px solid var(--teal-deep);
+    border-radius:20px;
+    padding:3px 11px;
+  }
+  .project-viz svg{width:100%; height:auto;}
+
+  /* ---------- Certifications ---------- */
+  .cert-list{
+    display:flex;
+    flex-direction:column;
+  }
+  .cert-item{
+    display:flex;
+    justify-content:space-between;
+    gap:20px;
+    padding:14px 0;
+    border-top:1px solid var(--line);
+    color:var(--ink-soft);
+    font-size:0.94rem;
+  }
+  .cert-item:first-child{border-top:none;}
+  .cert-item .cert-issuer{
+    color:var(--ink-faint);
+    font-size:0.82rem;
+    white-space:nowrap;
+  }
+
+  /* ---------- Contact / footer ---------- */
+  .contact h2{font-size:1.6rem; max-width:16ch;}
+  .contact p{color:var(--ink-soft); margin-top:14px; max-width:50ch;}
+  .contact-actions{
+    margin-top:24px;
+    display:flex;
+    gap:14px;
+    flex-wrap:wrap;
+  }
+  .btn{
+    display:inline-block;
+    text-decoration:none;
+    font-size:0.92rem;
+    padding:11px 20px;
+    border-radius:var(--radius);
+  }
+  .btn-primary{
+    background:var(--teal-deep);
+    color:#fff;
+  }
+  .btn-primary:hover{background:var(--teal);}
+  .btn-secondary{
+    border:1px solid var(--ink);
+    color:var(--ink);
+  }
+  .btn-secondary:hover{border-color:var(--teal); color:var(--teal-deep);}
+
+  footer{
+    padding:20px 48px 40px;
+    color:var(--ink-faint);
+    font-size:0.8rem;
+  }
+
+  /* ---------- Responsive ---------- */
+  @media (max-width:900px){
+    .layout{flex-direction:column;}
+    .sidebar{
+      display:none;
+    }
+    .mobile-bar{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      padding:20px 24px;
+      border-bottom:1px solid var(--line);
+      position:sticky;
+      top:0;
+      background:var(--bg);
+      z-index:10;
+    }
+    .mobile-bar .name{
+      font-family:'Fraunces', serif;
+      font-size:1.1rem;
+    }
+    .mobile-bar a{
+      color:var(--teal-deep);
+      text-decoration:none;
+      font-size:0.85rem;
+      border:1px solid var(--teal-deep);
+      padding:7px 14px;
+      border-radius:20px;
+    }
+    main{padding:36px 24px 60px;}
+    .about-grid{grid-template-columns:1fr;}
+    .skill-groups{grid-template-columns:1fr 1fr;}
+    .project-card{grid-template-columns:1fr;}
+    .project-viz{order:-1; max-width:220px;}
+    footer{padding:20px 24px 40px;}
+  }
+  @media (max-width:520px){
+    .skill-groups{grid-template-columns:1fr;}
+    .hero h1{font-size:2rem;}
+  }
+</style>
+</head>
+<body>
+
+<div class="mobile-bar">
+  <span class="name">Naresh Kumar</span>
+  <a href="#contact">Contact</a>
+</div>
+
+<div class="layout">
+
+  <aside class="sidebar">
+    <div class="sidebar-top">
+      <div class="name">Punganoor<br>Naresh Kumar</div>
+      <div class="role">Data Analytics &amp; BI · AI &amp; Data Science student</div>
+      <nav class="sidebar-nav" aria-label="Section navigation">
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#experience">Experience</a>
+        <a href="#projects">Projects</a>
+        <a href="#certifications">Certifications</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+    <div class="sidebar-contact">
+      <a href="mailto:nareshkumarpunganoor@gmail.com">nareshkumarpunganoor@gmail.com</a>
+      <a href="tel:8500228044">8500228044</a>
+      <a href="https://www.linkedin.com/in/punganoor-naresh-kumar-2b2300326/" target="_blank" rel="noopener">LinkedIn profile</a>
+      <span>Tiruvallur, Tamil Nadu, India</span>
+    </div>
+  </aside>
+
+  <main>
+
+    <!-- HERO -->
+    <section class="hero" id="top">
+      <p class="section-label">Data Analyst &amp; BI Developer</p>
+      <h1>Turning raw data into decisions worth acting on</h1>
+      <p class="lede">Pre-final year Artificial Intelligence &amp; Data Science student who builds Power BI dashboards that hold up under real business questions — from customer behaviour to sales performance. Three data analytics internships in, still learning, still shipping dashboards.</p>
+
+      <div class="hero-chart" aria-hidden="true">
+        <svg viewBox="0 0 560 180" xmlns="http://www.w3.org/2000/svg">
+          <line x1="0" y1="150" x2="560" y2="150" stroke="#DDE1DA" stroke-width="1"/>
+          <g>
+            <rect class="bar" x="20"  y="90"  width="46" height="60"  fill="#2C6E68" style="animation-delay:0.05s"/>
+            <rect class="bar" x="90"  y="60"  width="46" height="90"  fill="#2C6E68" style="animation-delay:0.15s"/>
+            <rect class="bar" x="160" y="100" width="46" height="50"  fill="#2C6E68" style="animation-delay:0.25s"/>
+            <rect class="bar" x="230" y="40"  width="46" height="110" fill="#2C6E68" style="animation-delay:0.35s"/>
+            <rect class="bar" x="300" y="70"  width="46" height="80"  fill="#2C6E68" style="animation-delay:0.45s"/>
+            <rect class="bar" x="370" y="20"  width="46" height="130" fill="#D98B3F" style="animation-delay:0.55s"/>
+            <rect class="bar" x="440" y="85"  width="46" height="65"  fill="#2C6E68" style="animation-delay:0.65s"/>
+          </g>
+          <text x="393" y="14" font-family="IBM Plex Sans" font-size="11" fill="#4B5768">current focus</text>
+        </svg>
+      </div>
+      <p class="hero-caption">Sample view from a Power BI-style dashboard build — the shape of work shown throughout this page.</p>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about">
+      <p class="section-label">About</p>
+      <div class="about-grid">
+        <p>I'm an Artificial Intelligence &amp; Data Science engineering student with a strong pull toward data analytics, business intelligence, and visualization. My work centres on Power BI — building interactive dashboards, modelling data with Power Query and DAX, and turning tables of raw numbers into something a business can actually use. I've picked up hands-on internship experience across three organisations and hold certifications in Power BI-adjacent tools, Microsoft Excel, and MongoDB. I'm currently open to Data Analytics, Power BI, and Business Intelligence internship opportunities.</p>
+        <div class="about-figures">
+          <div class="figure">
+            <div class="num">3</div>
+            <div class="cap">Data analytics internships completed</div>
+          </div>
+          <div class="figure">
+            <div class="num">2</div>
+            <div class="cap">Power BI dashboards shipped as projects</div>
+          </div>
+          <div class="figure">
+            <div class="num">5</div>
+            <div class="cap">Certifications across BI, Excel &amp; cloud</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section id="skills">
+      <p class="section-label">Skills</p>
+      <div class="skill-groups">
+        <div class="skill-group">
+          <h3>BI &amp; Visualization</h3>
+          <ul>
+            <li>Power BI</li>
+            <li>Power Query</li>
+            <li>DAX</li>
+            <li>Tableau</li>
+            <li>Dashboard development</li>
+          </ul>
+        </div>
+        <div class="skill-group">
+          <h3>Analysis</h3>
+          <ul>
+            <li>Data analytics</li>
+            <li>Exploratory data analysis</li>
+            <li>Business analysis</li>
+            <li>Business intelligence</li>
+          </ul>
+        </div>
+        <div class="skill-group">
+          <h3>Tools &amp; Languages</h3>
+          <ul>
+            <li>Microsoft Excel</li>
+            <li>SQL</li>
+            <li>Python (learning)</li>
+            <li>MongoDB</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- EXPERIENCE -->
+    <section id="experience">
+      <p class="section-label">Experience</p>
+      <div class="timeline">
+        <div class="tl-item">
+          <div class="tl-index">01</div>
+          <div>
+            <div class="tl-role">Data Analytics &amp; Business Intelligence Intern</div>
+            <div class="tl-org">Main Crafts Technology</div>
+            <div class="tl-dates">June 2026 – June 2026</div>
+            <p class="tl-desc">Worked hands-on with Excel, SQL, Power BI, and Tableau on data-driven tasks, strengthening core BI concepts, data visualization, and problem-solving skills.</p>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-index">02</div>
+          <div>
+            <div class="tl-role">Data Analyst Intern</div>
+            <div class="tl-org">Codec Technologies India</div>
+            <div class="tl-dates">June 2026 – July 2026</div>
+            <p class="tl-desc">Worked on data cleaning, exploration, and visualization tasks, applying Power BI and Excel to build reports that support business decision-making.</p>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-index">03</div>
+          <div>
+            <div class="tl-role">Data Analyst Intern</div>
+            <div class="tl-org">CodeAlpha</div>
+            <div class="tl-dates">June 2026 – July 2026</div>
+            <p class="tl-desc">Selected for a competitive data analytics internship centred on practical, data-driven problem solving and analysis workflows.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section id="projects">
+      <p class="section-label">Projects</p>
+      <div class="projects">
+
+        <div class="project-card">
+          <div>
+            <h3>E-Commerce Customer Analytics Dashboard</h3>
+            <p>An interactive Power BI dashboard analysing customer behaviour and sales trends, built with Power Query for data transformation and DAX for the underlying measures.</p>
+            <div class="project-tags"><span>Power BI</span><span>Power Query</span><span>DAX</span></div>
+          </div>
+          <div class="project-viz" aria-hidden="true">
+            <svg viewBox="0 0 200 140" xmlns="http://www.w3.org/2000/svg">
+              <polyline points="10,110 45,90 80,95 115,60 150,70 190,30" fill="none" stroke="#2C6E68" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+              <circle cx="190" cy="30" r="4" fill="#D98B3F"/>
+              <line x1="10" y1="120" x2="190" y2="120" stroke="#DDE1DA" stroke-width="1"/>
+            </svg>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div>
+            <h3>Superstore Sales Dashboard</h3>
+            <p>A sales performance dashboard visualising revenue, profit, and category-level trends across a retail superstore dataset — built to surface where margins were being won or lost.</p>
+            <div class="project-tags"><span>Power BI</span><span>Data Visualization</span></div>
+          </div>
+          <div class="project-viz" aria-hidden="true">
+            <svg viewBox="0 0 200 140" xmlns="http://www.w3.org/2000/svg">
+              <rect x="15"  y="70" width="24" height="50" fill="#2C6E68"/>
+              <rect x="55"  y="40" width="24" height="80" fill="#2C6E68"/>
+              <rect x="95"  y="85" width="24" height="35" fill="#D98B3F"/>
+              <rect x="135" y="55" width="24" height="65" fill="#2C6E68"/>
+              <rect x="175" y="20" width="10" height="100" fill="#DDE1DA"/>
+              <line x1="10" y1="121" x2="190" y2="121" stroke="#DDE1DA" stroke-width="1"/>
+            </svg>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- CERTIFICATIONS -->
+    <section id="certifications">
+      <p class="section-label">Certifications</p>
+      <div class="cert-list">
+        <div class="cert-item"><span>MongoDB Advanced Schema Design Patterns and Anti-patterns</span><span class="cert-issuer">Skill Badge</span></div>
+        <div class="cert-item"><span>Introduction to Data Analysis using Microsoft Excel</span><span class="cert-issuer">Certification</span></div>
+        <div class="cert-item"><span>Machine Learning Foundations</span><span class="cert-issuer">AWS Educate</span></div>
+        <div class="cert-item"><span>Introduction to Generative AI</span><span class="cert-issuer">AWS Educate</span></div>
+        <div class="cert-item"><span>MongoDB Basics for Students</span><span class="cert-issuer">Training Badge</span></div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="contact" id="contact" style="border-bottom:none;">
+      <p class="section-label">Contact</p>
+      <h2>Open to Data Analytics &amp; BI internships</h2>
+      <p>Currently looking for Data Analytics, Power BI, and Business Intelligence internship opportunities. Reach out by email or connect on LinkedIn — happy to walk through any of the dashboards above in more detail.</p>
+      <div class="contact-actions">
+        <a class="btn btn-primary" href="mailto:nareshkumarpunganoor@gmail.com">Email me</a>
+        <a class="btn btn-secondary" href="https://www.linkedin.com/in/punganoor-naresh-kumar-2b2300326/" target="_blank" rel="noopener">View LinkedIn</a>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<footer>Punganoor Naresh Kumar · Tiruvallur, Tamil Nadu, India</footer>
+
+</body>
+</html>
